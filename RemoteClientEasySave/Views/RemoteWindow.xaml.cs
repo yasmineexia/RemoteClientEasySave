@@ -15,18 +15,13 @@ using System.Windows.Shapes;
 namespace RemoteClientEasySave.Views
 {
     /// <summary>
-    /// Logique d'interaction pour MainWindow.xaml
+    /// Logique d'interaction pour RemoteWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class RemoteWindow : Window
     {
-        public MainWindow()
+        public RemoteWindow()
         {
             InitializeComponent();
-        }
-
-        private void InitializeComponent()
-        {
-            
         }
     }
 }
