@@ -23,5 +23,10 @@ namespace RemoteClientEasySave.Views
         {
             InitializeComponent();
         }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            App.Current.Shutdown();
+        }
     }
 }

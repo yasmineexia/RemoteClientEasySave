@@ -4,9 +4,219 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RemoteClientEasySave.Views"
+        Title="RemoteWindow" 
         mc:Ignorable="d"
-        Title="RemoteWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Height="720" Width="920"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True">
+
+    <Border Background="#f0f0f0"
+            CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="350"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0" Grid.Column="1"
+                   Source="\image\logolongremovebg.png"
+                   HorizontalAlignment="Left"
+                   Margin="20,30,0,0" />
+
+            <StackPanel Grid.Row="1" Grid.Column="1"
+                        Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+
+                    <Button HorizontalAlignment="Right" 
+                            FontFamily="Corbel"
+                            Margin="10,6"
+                            Height="41" 
+                            Width="180"                            
+                            FontWeight="Bold"
+                            Style="{StaticResource btnHover}" 
+                            Command="{Binding LaunchCommand}" 
+                            Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="\image\play.png"
+                                   Height="15" 
+                                   Margin="0,0,5,0"/>
+                            <Label FontSize="18"
+                            Foreground="White" 
+                                   Content="lancer"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button HorizontalAlignment="Right" 
+                            FontFamily="Corbel"
+                            Margin="10,6"
+                            Height="41" 
+                            Width="180"
+                            FontWeight="Bold"
+                            Command="{Binding PauseTask, Mode=OneWay}"
+                            Style="{StaticResource btnHover}" 
+                            Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="\image\pause.png"
+                                   Height="15" 
+                                   Margin="0,0,5,0"/>
+                            <Label FontSize="18"
+                                   Foreground="White" 
+                                   Content="pause"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button HorizontalAlignment="Right" 
+                            FontFamily="Corbel"
+                            Margin="10,6"
+                            Height="41" 
+                            Width="180"
+                            FontWeight="Bold"
+                            Command=""
+                            Style="{StaticResource btnHover}" 
+                            Cursor="Hand">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="\image\stop.png"
+                                   Height="12" 
+                                   Margin="0,0,7,0"/>
+                            <Label FontSize="18"
+                            Foreground="White" 
+                                   Content="stop"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button HorizontalAlignment="Right" 
+                            FontFamily="Corbel"
+                            Margin="10,6"
+                            Height="41" 
+                            Width="180"
+                            FontSize="18"
+                            Foreground="White"
+                            Content="quitter"
+                            FontWeight="Bold"
+                            Style="{StaticResource btnHover}" 
+                            Command="" Click="Button_Click_2" 
+                            IsEnabled="{Binding canChangeparam}" 
+                            Cursor="Hand"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="\image\play.png"
+                                   Height="25" 
+                                   Margin="0,0,5,0"/>
+                    <Image Source="\image\pause.png"
+                                   Height="25" 
+                                   Margin="0,0,5,0"/>
+                    <Image Source="\image\stop.png"
+                                   Height="20" 
+                                   Margin="7,0,7,0"/>
+                    <ProgressBar Height="20" 
+                                 Margin="30,0,0,0"
+                                 Width="680"/>
+                </StackPanel>
+
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" Grid.Column="1" 
+                        Height="325" Width="800" 
+                        VerticalAlignment="Top" >
+                <Border CornerRadius="6"
+                        Height="300" Width="800" 
+                        BorderBrush="#fff"
+                        BorderThickness="6"
+                        Margin="0,10"
+                        Background="#fff"  
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="top">
+                    <DataGrid Grid.Row="2" Grid.Column="1" 
+                              x:Name="EasySave"
+                              Height="300" Width="785" 
+                              HorizontalAlignment="Left" 
+                              VerticalAlignment="Top" 
+                              RowHeight="25" 
+                              FontSize="15"
+                              Background="Transparent" 
+                              RowBackground="White"
+                              GridLinesVisibility="All" 
+                              HeadersVisibility="All"  
+                              BorderBrush="#F0F0F0" 
+                              BorderThickness="0" 
+                              HorizontalScrollBarVisibility="Visible" 
+                              SelectionMode="Single"  
+                              Foreground="#2F203C"
+                              HorizontalGridLinesBrush="#F0F0F0"
+                              VerticalGridLinesBrush="#F0F0F0"
+                              ItemsSource="{Binding Backups, Mode=TwoWay}"   
+                              SelectedItem="{Binding Backup}" 
+                              CurrentItem="{Binding Backup}" 
+                              IsReadOnly="True" 
+                              AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Nom" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn  Binding="{Binding Source}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Source" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Destination}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Destination" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding Type}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Type" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding State}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="State" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding NbFile, Mode=OneWay}" >
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Nb Fichiers" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Binding="{Binding NbFileRemaining}">
+                                <DataGridTextColumn.Header>
+                                    <TextBlock Text="Nb Fichiers restants}" />
+                                </DataGridTextColumn.Header>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                <Label
+                    Height="20"
+                    FontWeight="Bold"
+                    VerticalAlignment="Top"
+                    Padding="330,5,5,0">
+                    Launched by
+                </Label>
+                <Image Source="/image/prosoftlogo.png" Height="20" VerticalAlignment="Top"/>
+                <Label
+                    Height="20"
+                    FontWeight="Bold"
+                    VerticalAlignment="Top"
+                    Padding="5,5,0,0">
+                    Prosoft
+                </Label>
+            </StackPanel>
+        </Grid>
+    </Border>
+
 </Window>
