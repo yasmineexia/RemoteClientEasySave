@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RemoteClientEasySave.Views"
         Title="RemoteWindow" 
         mc:Ignorable="d"
-        Height="720" Width="920"
+        Height="650" Width="920"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
@@ -21,102 +21,53 @@
                 <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="120"/>
-                <RowDefinition Height="200"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="100"/>
                 <RowDefinition Height="350"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Grid.Column="1"
-                   Source="\image\logolongremovebg.png"
-                   HorizontalAlignment="Left"
-                   Margin="20,30,0,0" />
-
+            <StackPanel Grid.Row="0" Grid.Column="1"
+                        Orientation="Horizontal">
+                <Image Source="\image\logolongremovebg.png"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Height="100"/>
+                <Button Margin="360,0,0,0" Background="Transparent"
+                        Click="Button_Click_2" 
+                        Style="{StaticResource nohover}"
+                        BorderThickness="0">
+                    <Image Height="80"
+                        Source="/image/close.png"/>
+                </Button>
+            </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1"
-                        Orientation="Vertical">
-                <StackPanel Orientation="Horizontal">
-
-                    <Button HorizontalAlignment="Right" 
-                            FontFamily="Corbel"
-                            Margin="10,6"
-                            Height="41" 
-                            Width="180"                            
-                            FontWeight="Bold"
-                            Style="{StaticResource btnHover}" 
-                            Command="{Binding LaunchCommand}" 
-                            Cursor="Hand">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="\image\play.png"
-                                   Height="15" 
-                                   Margin="0,0,5,0"/>
-                            <Label FontSize="18"
-                            Foreground="White" 
-                                   Content="lancer"/>
-                        </StackPanel>
+                       VerticalAlignment="Bottom">
+                <StackPanel Orientation="Horizontal"
+                            Margin="40">
+                    <Button Background="Transparent"
+                            BorderThickness="0"
+                            Style="{StaticResource nohover}"
+                            Command="{Binding LaunchCommand}">
+                        <Image Source="\image\play.png"
+                                       Height="25" 
+                                       Margin="0,0,5,0"/>
                     </Button>
-
-                    <Button HorizontalAlignment="Right" 
-                            FontFamily="Corbel"
-                            Margin="10,6"
-                            Height="41" 
-                            Width="180"
-                            FontWeight="Bold"
-                            Command="{Binding PauseTask, Mode=OneWay}"
-                            Style="{StaticResource btnHover}" 
-                            Cursor="Hand">
-                        <StackPanel Orientation="Horizontal">
+                    <Button Background="Transparent"
+                            BorderThickness="0"
+                            Style="{StaticResource nohover}"
+                            Command="{Binding PauseTask, Mode=OneWay}">
                             <Image Source="\image\pause.png"
-                                   Height="15" 
-                                   Margin="0,0,5,0"/>
-                            <Label FontSize="18"
-                                   Foreground="White" 
-                                   Content="pause"/>
-                        </StackPanel>
+                                       Height="25" 
+                                       Margin="0,0,5,0"/>
                     </Button>
-
-                    <Button HorizontalAlignment="Right" 
-                            FontFamily="Corbel"
-                            Margin="10,6"
-                            Height="41" 
-                            Width="180"
-                            FontWeight="Bold"
-                            Command=""
-                            Style="{StaticResource btnHover}" 
-                            Cursor="Hand">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="\image\stop.png"
-                                   Height="12" 
-                                   Margin="0,0,7,0"/>
-                            <Label FontSize="18"
-                            Foreground="White" 
-                                   Content="stop"/>
-                        </StackPanel>
+                    <Button Background="Transparent"
+                            BorderThickness="0"
+                            Style="{StaticResource nohover}">
+                        <Image Source="\image\stop.png"
+                                       Height="20" 
+                                       Margin="7,0,7,0"/>
                     </Button>
-
-                    <Button HorizontalAlignment="Right" 
-                            FontFamily="Corbel"
-                            Margin="10,6"
-                            Height="41" 
-                            Width="180"
-                            FontSize="18"
-                            Foreground="White"
-                            Content="quitter"
-                            FontWeight="Bold"
-                            Style="{StaticResource btnHover}" 
-                            Command="" Click="Button_Click_2" 
-                            IsEnabled="{Binding canChangeparam}" 
-                            Cursor="Hand"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="\image\play.png"
-                                   Height="25" 
-                                   Margin="0,0,5,0"/>
-                    <Image Source="\image\pause.png"
-                                   Height="25" 
-                                   Margin="0,0,5,0"/>
-                    <Image Source="\image\stop.png"
-                                   Height="20" 
-                                   Margin="7,0,7,0"/>
                     <ProgressBar Height="20" 
                                  Margin="30,0,0,0"
                                  Width="680"/>
