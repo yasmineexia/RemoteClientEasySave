@@ -26,7 +26,7 @@
                 <RowDefinition Height="350"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
+            
             <StackPanel Grid.Row="0" Grid.Column="1"
                         Orientation="Horizontal">
                 <Image Source="\image\logolongremovebg.png"
@@ -63,6 +63,7 @@
                     </Button>
                     <Button Background="Transparent"
                             BorderThickness="0"
+                            
                             Style="{StaticResource nohover}">
                         <Image Source="\image\stop.png"
                                        Height="20" 
