@@ -10,7 +10,7 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True" WindowStartupLocation="CenterOwner">
     <Border Background="#f0f0f0"
             CornerRadius="20">
         <Grid>
@@ -36,15 +36,15 @@
                 <Label FontSize="18" 
                        Margin="5"
                        Content="Adresse IP"/>
-                <PasswordBox Height="35"
-                             Width="240"
-                             FontSize="15"/>
+                <TextBox x:Name="IP" Height="35"
+                         Width="240"
+                         FontSize="15"/>
                 <Label FontSize="18" 
                        Margin="5"
                        Content="Mot de passe"/>
-                <TextBox Height="35"
-                         Width="240"
-                         FontSize="15"/>
+                <PasswordBox x:Name="Password" Height="35"
+                             Width="240"
+                             FontSize="15"/>
                 <Button Height="40" 
                         BorderThickness="0"
                         FontFamily="Corbel"

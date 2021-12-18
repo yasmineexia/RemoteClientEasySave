@@ -1,5 +1,6 @@
 ﻿using RemoteClientEasySave.Libs;
 using RemoteClientEasySave.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -19,7 +20,8 @@ namespace RemoteClientEasySave.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         Thread Thread;
-        Client Client;
+        public Client Client;
+        private static Object _locker = new Object(); 
         List<Backup> _backups;
         Backup _backup;
         ICommand _pausecommand;
@@ -31,20 +33,13 @@ namespace RemoteClientEasySave.ViewModels
         public ViewModel()
         {
             Client = new Client();
-            if (Client.SeConnecter("127.0.0.1", "nazim", 2906))
-            {
-                GetBackups();
-            }
-            else
-            {
-                MessageBox.Show("error");
-
-            }
-
         }
-        private void GetBackups()
+        public void GetBackups()
         {
-            Backups = Client.GetTasks();
+            lock (_locker)
+            {
+                Backups = Client.GetTasks();
+            }
         }
         public ICommand PauseCommand
         {
@@ -81,21 +76,33 @@ namespace RemoteClientEasySave.ViewModels
             set { _backup = value; OnPropertyChanged("Backup"); }
         }
 
-
+        public void Actualisation()
+        {
+            GetBackups();
+            Thread.Sleep(1000);
+        }
         private void Pause(object param)
         {
-            if (param as int? == null) return;
-            Debug.WriteLine((param as int?).ToString());
+            lock (_locker)
+            {
+                Backups = Client.PauseTask((Backup)param);
+            }
         }
         private void Start(object param)
         {
-            if (param as int? == null) return;
-            Debug.WriteLine((param as int?).ToString());
+            lock (_locker)
+            {
+                Backups = Client.StartTask((Backup)param);
+                GetBackups();
+            }
+
         }
         private void Stop(object param)
         {
-            if (param as int? == null) return;
-            Debug.WriteLine((param as int?).ToString());
+            lock (_locker)
+            {
+                Backups = Client.StopTask((Backup)param);
+            }
         }
 
     }

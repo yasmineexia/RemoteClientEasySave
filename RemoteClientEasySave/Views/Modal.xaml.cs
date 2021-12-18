@@ -26,9 +26,7 @@ namespace RemoteClientEasySave.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            RemoteWindow remoteWindow = new RemoteWindow();
             this.Hide();
-            remoteWindow.Show();
         }
     }
 }

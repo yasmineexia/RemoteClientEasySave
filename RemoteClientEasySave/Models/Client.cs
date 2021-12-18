@@ -19,7 +19,7 @@ namespace RemoteClientEasySave.Models
         public static readonly string OK_MESSAGE = "OK";
         public bool Error;
         public string CMD;
-        public List<Backup> obj;
+        public object obj;
     }
     internal class Client
     {
@@ -47,7 +47,7 @@ namespace RemoteClientEasySave.Models
         internal List<Backup> GetTasks()
         {
             Message res = sendData(new Message { CMD = "GetTasks", Error = false }) ;
-            return res.obj;
+            return ((JArray)res.obj).ToObject<List<Backup>>();
             
         }
 
@@ -73,6 +73,30 @@ namespace RemoteClientEasySave.Models
             // Afficher le message « Déconnexion su serveur terminée. "  
             Console.WriteLine("Deconnexion finit");
         }
+
+        public List<Backup> PauseTask(Backup backup)
+        {
+            var obj = new List<Backup>();
+            obj.Add(backup);
+            Message res = sendData(new Message { CMD="PauseTask",obj = obj, Error = false }) ;
+            if (res.Error) return new List<Backup>();
+            return ((JArray)res.obj).ToObject<List<Backup>>();
+        }
+        public List<Backup> StartTask(Backup backup)
+        {
+            var obj = new List<Backup> { backup };
+            Message res = sendData(new Message { CMD="StartTask",obj=obj, Error = false }) ;
+            if(res.Error) return new List<Backup>();
+            return ((JArray)res.obj).ToObject<List<Backup>>();
+        }
+        public List<Backup> StopTask(Backup backup)
+        {
+            var obj = new List<Backup> { backup };
+            Message res = sendData(new Message { CMD="StopTask",obj=obj, Error = false }) ;
+            if(res.Error) return new List<Backup>();
+            return ((JArray)res.obj).ToObject<List<Backup>>();
+        }
+
     }
 }
 

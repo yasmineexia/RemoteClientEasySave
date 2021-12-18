@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RemoteClientEasySave.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +28,21 @@ namespace RemoteClientEasySave.Views
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             App.Current.Shutdown();
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            Modal m = new Modal();
+            m.Owner = this;
+            m.ShowDialog();
+            if((DataContext as ViewModel).Client.SeConnecter(m.IP.Text, m.Password.Password, 2906))
+            {
+                (DataContext as ViewModel).GetBackups();
+            }
+            else
+            {
+                Grid_Loaded(this, e);
+            }
         }
     }
 }
