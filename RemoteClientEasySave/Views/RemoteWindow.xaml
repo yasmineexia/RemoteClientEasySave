@@ -31,7 +31,7 @@
                 <RowDefinition Height="350"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-
+            
             <StackPanel Grid.Row="0" Grid.Column="1"
                         Orientation="Horizontal">
                 <Image Source="\image\logolongremovebg.png"
@@ -43,7 +43,7 @@
                         Style="{StaticResource nohover}"
                         BorderThickness="0">
                     <Image Height="80"
-                        Source="/image/close.png"/>
+                        Source="/image/close.png" Cursor="Hand"/>
                 </Button>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1"
