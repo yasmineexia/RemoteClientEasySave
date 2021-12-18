@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:RemoteClientEasySave.Views"
+        xmlns:local="clr-namespace:RemoteClientEasySave.ViewModels"
         Title="RemoteWindow" 
         mc:Ignorable="d"
         Height="650" Width="920"
@@ -11,6 +11,11 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True">
+    
+    
+    <Window.DataContext>
+        <local:ViewModel />
+    </Window.DataContext>
 
     <Border Background="#f0f0f0"
             CornerRadius="20">
@@ -48,7 +53,7 @@
                     <Button Background="Transparent"
                             BorderThickness="0"
                             Style="{StaticResource nohover}"
-                            Command="{Binding LaunchCommand}">
+                            Command="{Binding StartCommand}" CommandParameter="{Binding SelectedIndex, ElementName=EasySave}">
                         <Image Source="\image\play.png"
                                        Height="25" 
                                        Margin="0,0,5,0"/>
@@ -56,14 +61,15 @@
                     <Button Background="Transparent"
                             BorderThickness="0"
                             Style="{StaticResource nohover}"
-                            Command="{Binding PauseTask, Mode=OneWay}">
+                            Command="{Binding PauseCommand}" CommandParameter="{Binding SelectedIndex, ElementName=EasySave}">
                             <Image Source="\image\pause.png"
                                        Height="25" 
                                        Margin="0,0,5,0"/>
                     </Button>
                     <Button Background="Transparent"
                             BorderThickness="0"
-                            Style="{StaticResource nohover}">
+                            Style="{StaticResource nohover}"
+                            Command="{Binding StopCommand}" CommandParameter="{Binding SelectedIndex, ElementName=EasySave}">
                         <Image Source="\image\stop.png"
                                        Height="20" 
                                        Margin="7,0,7,0"/>
@@ -142,7 +148,7 @@
                             </DataGridTextColumn>
                             <DataGridTextColumn Binding="{Binding NbFileRemaining}">
                                 <DataGridTextColumn.Header>
-                                    <TextBlock Text="Nb Fichiers restants}" />
+                                    <TextBlock Text="Nb Fichiers restants" />
                                 </DataGridTextColumn.Header>
                             </DataGridTextColumn>
                             <DataGridTextColumn/>
