@@ -11,8 +11,13 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True" WindowStartupLocation="CenterOwner">
-    <Border Background="#f0f0f0"
+    <Grid>
+        <Border Height="390" Width="490"
+        Background="#f0f0f0"
             CornerRadius="20">
+        <Border.Effect>
+                <DropShadowEffect Opacity="0.3" ShadowDepth="6" />
+        </Border.Effect>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
@@ -58,4 +63,5 @@
             </StackPanel>
         </Grid>
     </Border>
+    </Grid>
 </Window>
