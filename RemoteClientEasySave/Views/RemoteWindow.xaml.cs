@@ -35,7 +35,7 @@ namespace RemoteClientEasySave.Views
             Modal m = new Modal();
             m.Owner = this;
             m.ShowDialog();
-            if((DataContext as ViewModel).Client.SeConnecter(m.IP.Text, m.Password.Password, 2906))
+            if(m.IP.Text != null && m.Password.Password != null && (DataContext as ViewModel).Client.SeConnecter(m.IP.Text, m.Password.Password, 2906))
             {
                 (DataContext as ViewModel).GetBackups();
             }

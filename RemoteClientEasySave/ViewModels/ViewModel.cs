@@ -2,6 +2,7 @@
 using RemoteClientEasySave.Models;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Net.Sockets;
@@ -24,6 +25,9 @@ namespace RemoteClientEasySave.ViewModels
         private static Object _locker = new Object(); 
         List<Backup> _backups;
         Backup _backup;
+        public int selidx;
+        public double maxp ;
+        public double vp ;
         ICommand _pausecommand;
         ICommand _startcommand;
         ICommand _stopcommand;
@@ -32,7 +36,24 @@ namespace RemoteClientEasySave.ViewModels
 
         public ViewModel()
         {
+            vp = 0;
+            maxp = 0;
+            PropertyChanged += change;
             Client = new Client();
+            
+
+        }
+        public void change (object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Backups")
+            {
+
+                maxp = 0;
+                foreach (var t in Backups) if (t.State == BackupState.En_Cours) maxp += 100; 
+                vp = 0;
+                foreach (var t in Backups) vp += (float)t.Progression;
+                Debug.WriteLine(Backups[0].Progression);
+            }
         }
         public void GetBackups()
         {
@@ -78,8 +99,9 @@ namespace RemoteClientEasySave.ViewModels
 
         public void Actualisation()
         {
-            GetBackups();
-            Thread.Sleep(1000);
+
+                GetBackups();
+                
         }
         private void Pause(object param)
         {

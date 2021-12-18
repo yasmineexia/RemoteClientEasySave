@@ -32,7 +32,8 @@ namespace RemoteClientEasySave.Models
         private BackupType _type;
         private BackupState _state;
         private double _nb_file_remaining, _total_size,_nbfile;
-        private int _currentindex = 0;
+        public int _currentindex = 0;
+        private int _progression;
         public string Name
         {
             get { return _name ?? ""; }
@@ -64,7 +65,7 @@ namespace RemoteClientEasySave.Models
                 _destination = value;
                 OnPropertyChanged("Destination");
             }
-        }
+        } 
         public BackupType Type
         {
             get { return _type; }
@@ -107,16 +108,14 @@ namespace RemoteClientEasySave.Models
                 OnPropertyChanged("TotalSize");
             }
         }
-        public string Progression
-        {
-            get
+        public int Progression { get
             {
-                if (State == BackupState.Inactif) return "0%";
-                if (NbFileRemaining == 0) return "100%";
-                double finit = NbFile - NbFileRemaining;
-                if (finit == 0) return "0%";
-                double p = finit * 100 / NbFile;
-                return p + "%";
+                return _progression;
+            }
+            set
+            {
+                _progression = value;
+                OnPropertyChanged("Progression");
             }
         }
         public double NbFile
@@ -124,12 +123,5 @@ namespace RemoteClientEasySave.Models
             get { return _nbfile; }
             set { _nbfile = value;OnPropertyChanged("NbFile"); }
         }
-     
-        
-       
-        
-       
-        
-        
     }
 }

@@ -2,10 +2,12 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RemoteClientEasySave.Models
@@ -24,6 +26,7 @@ namespace RemoteClientEasySave.Models
     internal class Client
     {
         Socket socket;
+        public Thread Thread;
         public Client()
         {
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -47,6 +50,7 @@ namespace RemoteClientEasySave.Models
         internal List<Backup> GetTasks()
         {
             Message res = sendData(new Message { CMD = "GetTasks", Error = false }) ;
+            Debug.WriteLine(res);
             return ((JArray)res.obj).ToObject<List<Backup>>();
             
         }
