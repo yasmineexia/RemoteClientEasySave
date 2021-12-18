@@ -6,46 +6,73 @@
         xmlns:local="clr-namespace:RemoteClientEasySave.Views"
         mc:Ignorable="d"
         Title="Modal"  
-        Height="400" Width="500"
+        Height="430" 
+        Width="530"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True" WindowStartupLocation="CenterOwner">
-    <Border Background="#f0f0f0"
+        AllowsTransparency="True" 
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        
+        <Border 
+            Height="400" 
+            Width="500"
+            Background="#f0f0f0"
             CornerRadius="20">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="50"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="90"/>
-                <RowDefinition/>
-                <RowDefinition Height="50"/>
-            </Grid.RowDefinitions>
+            
+            <Border.Effect>
+                    <DropShadowEffect 
+                        Opacity="0.3" 
+                        ShadowDepth="0" 
+                        BlurRadius="20"/>
+            </Border.Effect>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Grid.Column="1"
-                   Source="/image/logolongremovebg.png"
-                   HorizontalAlignment="Center"
-                   Margin="0,20,0,10" />
-            <StackPanel Grid.Row="1" 
-                        Grid.Column="1"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center">
-                <Label FontSize="18" 
-                       Margin="5"
-                       Content="Adresse IP"/>
-                <TextBox x:Name="IP" Height="35"
-                         Width="240"
-                         FontSize="15"/>
-                <Label FontSize="18" 
-                       Margin="5"
-                       Content="Mot de passe"/>
-                <PasswordBox x:Name="Password" Height="35"
-                             Width="240"
-                             FontSize="15"/>
-                <Button Height="40" 
+                <Image 
+                    Grid.Row="0" 
+                    Grid.Column="1"
+                    Source="/image/logolongremovebg.png"
+                    HorizontalAlignment="Center"
+                    Margin="0,20,0,10" />
+                <StackPanel 
+                    Grid.Row="1" 
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                    <Label 
+                        FontSize="18" 
+                        Margin="5"
+                        Content="Adresse IP"/>
+                    <TextBox 
+                        VerticalContentAlignment="Center"
+                        x:Name="IP" 
+                        Height="35"
+                        Width="240"
+                        FontSize="15"/>
+                    <Label 
+                        FontSize="18" 
+                        Margin="5"
+                        Content="Mot de passe"/>
+                    <PasswordBox 
+                        VerticalContentAlignment="Center"
+                        x:Name="Password" 
+                        Height="35"
+                        Width="240"
+                        FontSize="15"/>
+                    <Button 
+                        Height="40" 
                         BorderThickness="0"
                         FontFamily="Corbel"
                         Width="150"
@@ -55,7 +82,12 @@
                         Style="{StaticResource brosehover}" 
                         Content="Se connecter" 
                         Cursor="Hand" Click="Button_Click"/>
-            </StackPanel>
-        </Grid>
-    </Border>
+                </StackPanel>
+                
+            </Grid>
+            
+        </Border>
+        
+    </Grid>
+    
 </Window>
