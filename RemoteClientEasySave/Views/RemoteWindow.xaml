@@ -38,7 +38,7 @@
                         Style="{StaticResource nohover}"
                         BorderThickness="0">
                     <Image Height="80"
-                        Source="/image/close.png"/>
+                        Source="/image/close.png" Cursor="Hand"/>
                 </Button>
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="1"

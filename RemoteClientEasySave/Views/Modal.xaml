@@ -54,7 +54,7 @@
                         Foreground="White"
                         Style="{StaticResource brosehover}" 
                         Content="Se connecter" 
-                        Cursor="Hand"/>
+                        Cursor="Hand" Click="Button_Click"/>
             </StackPanel>
         </Grid>
     </Border>
