@@ -56,7 +56,7 @@
                             Command="{Binding StartCommand}" CommandParameter="{Binding SelectedItem, ElementName=EasySave}">
                         <Image Source="\image\play.png"
                                        Height="25" 
-                                       Margin="0,0,5,0"/>
+                                       Margin="0,0,5,0" Cursor="Hand"/>
                     </Button>
                     <Button Background="Transparent"
                             BorderThickness="0"
@@ -64,12 +64,12 @@
                             Command="{Binding PauseCommand}" CommandParameter="{Binding SelectedItem, ElementName=EasySave}">
                         <Image Source="\image\pause.png"
                                        Height="25" 
-                                       Margin="0,0,5,0"/>
+                                       Margin="0,0,5,0" Cursor="Hand"/>
                     </Button>
                     <Button Background="Transparent"
                             BorderThickness="0"
                             Style="{StaticResource nohover}"
-                            Command="{Binding StopCommand}" CommandParameter="{Binding SelectedItem, ElementName=EasySave}">
+                            Command="{Binding StopCommand}" CommandParameter="{Binding SelectedItem, ElementName=EasySave}" Cursor="Hand">
                         <Image Source="\image\stop.png"
                                        Height="20" 
                                        Margin="7,0,7,0"/>
