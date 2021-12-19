@@ -77,7 +77,14 @@
                     <StackPanel>
                         <ProgressBar Height="20" 
                                      Margin="30,0,0,0"
-                                     Width="680" Maximum="{Binding maxp}" Value="{Binding vp}" />
+                                     Width="500" Maximum="{Binding maxp}" Value="{Binding vp}" />
+                    </StackPanel>
+                    <StackPanel>
+                        <Button Height="20" 
+                                Margin="10, 0, 0, 0"
+                                Width="100"
+                                Content="Actualiser"
+                                Style="{StaticResource showHover}" Cursor="Hand"/>
                     </StackPanel>
                 </StackPanel>
 
