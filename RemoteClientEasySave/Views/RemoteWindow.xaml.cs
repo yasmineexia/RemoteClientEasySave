@@ -38,11 +38,17 @@ namespace RemoteClientEasySave.Views
             if(m.IP.Text != null && m.Password.Password != null && (DataContext as ViewModel).Client.SeConnecter(m.IP.Text, m.Password.Password, 2906))
             {
                 (DataContext as ViewModel).GetBackups();
+                (DataContext as ViewModel).Thread.Start();
             }
             else
             {
                 Grid_Loaded(this, e);
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            (DataContext as ViewModel).GetBackups();
         }
     }
 }

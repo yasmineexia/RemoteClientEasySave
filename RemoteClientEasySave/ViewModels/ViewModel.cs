@@ -20,14 +20,24 @@ namespace RemoteClientEasySave.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        Thread Thread;
+        double _maxp;
+        double _vp;
+        public Thread Thread;
         public Client Client;
         private static Object _locker = new Object(); 
         List<Backup> _backups;
         Backup _backup;
         public int selidx;
-        public double maxp ;
-        public double vp ;
+        public double maxp
+        {
+            get { return _maxp; }
+            set { _maxp = value; OnPropertyChanged("maxp"); }
+        }
+        public double vp 
+        {
+            get { return _vp; }
+            set { _vp = value; OnPropertyChanged("vp"); }
+        }
         ICommand _pausecommand;
         ICommand _startcommand;
         ICommand _stopcommand;
@@ -40,18 +50,25 @@ namespace RemoteClientEasySave.ViewModels
             maxp = 0;
             PropertyChanged += change;
             Client = new Client();
-            
-
+            Thread = new Thread(Actualisation);
+            Thread.Name = "refresh thread";
+        }
+        private void Actualisation()
+        {
+            while (true)
+            {
+                if (Backup == null || Backups == null) GetBackups();
+                Thread.Sleep(1000);
+            }
         }
         public void change (object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Backups")
             {
-
                 maxp = 0;
                 foreach (var t in Backups) if (t.State == BackupState.En_Cours) maxp += 100; 
                 vp = 0;
-                foreach (var t in Backups) vp += (float)t.Progression;
+                foreach (var t in Backups) vp += (double)t.Progression;
                 Debug.WriteLine(Backups[0].Progression);
             }
         }
@@ -95,13 +112,6 @@ namespace RemoteClientEasySave.ViewModels
         {
             get { return _backup; }
             set { _backup = value; OnPropertyChanged("Backup"); }
-        }
-
-        public void Actualisation()
-        {
-
-                GetBackups();
-                
         }
         private void Pause(object param)
         {

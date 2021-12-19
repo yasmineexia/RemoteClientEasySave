@@ -77,14 +77,14 @@
                     <StackPanel>
                         <ProgressBar Height="20" 
                                      Margin="30,0,0,0"
-                                     Width="500" Maximum="{Binding maxp}" Value="{Binding vp}" />
+                                     Width="500" Maximum="{Binding maxp}" Value="{Binding vp, UpdateSourceTrigger=PropertyChanged}" />
                     </StackPanel>
                     <StackPanel>
                         <Button Height="20" 
                                 Margin="10, 0, 0, 0"
                                 Width="100"
                                 Content="Actualiser"
-                                Style="{StaticResource showHover}" Cursor="Hand"/>
+                                Style="{StaticResource showHover}" Cursor="Hand" Click="Button_Click"/>
                     </StackPanel>
                 </StackPanel>
 
@@ -121,9 +121,8 @@
                               VerticalGridLinesBrush="#F0F0F0"
                               ItemsSource="{Binding Backups, Mode=TwoWay}"   
                               SelectedItem="{Binding Backup}" 
-                              CurrentItem="{Binding Backup}" 
                               IsReadOnly="True" 
-                              AutoGenerateColumns="False" SelectedIndex="{Binding selidx,Mode=TwoWay}">
+                              AutoGenerateColumns="False" SelectedIndex="{Binding selidx}">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Name}">
                                 <DataGridTextColumn.Header>
